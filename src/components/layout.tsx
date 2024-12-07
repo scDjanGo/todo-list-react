@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, Suspense } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { Outlet } from "react-router-dom"
@@ -28,9 +28,11 @@ export default function layout() {
 
                 <div className="p-[15px_30px] mt-[15px] bg-gray-400 rounded-[16px]">
                     <Navbar />
-                    <div className="overflow-y-auto h-[500px] 1240:h-[400px]" style={{scrollbarWidth: "none", msOverflowStyle: "none"}}>
-                        <Outlet />
-                    </div>
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <div className="overflow-y-auto h-[500px] 1240:h-[400px]" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+                            <Outlet />
+                        </div>
+                    </Suspense>
                 </div>
             </div>
         </div>
